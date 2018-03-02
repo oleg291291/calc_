@@ -1,7 +1,7 @@
 class SmartCalculator {
   constructor(initialValue) {
     // your implementation
-    this.result = initialValue; // тут ответ
+    this.result = 0; // тут ответ
     this.stackArr = [initialValue];
 
     // this.calc = function calc(){
@@ -65,6 +65,14 @@ class SmartCalculator {
         devIndex = calcArr.indexOf("/");
       }
 
+//subt
+      while(calcArr.indexOf("minus") != -1){
+        var subtIndex = calcArr.indexOf("minus");
+        var subtracted = calcArr[subtIndex - 1] - calcArr[subtIndex + 1]
+        calcArr[subtIndex - 1] = subtracted;
+        calcArr.splice(subtIndex, 2);
+        subtIndex = calcArr.indexOf("minus");
+      }
       //sum+
       while(calcArr.indexOf('+') != -1){
         var sumIndex = calcArr.indexOf('+');
@@ -73,19 +81,7 @@ class SmartCalculator {
         calcArr.splice(sumIndex, 2);
         sumIndex = calcArr.indexOf('+');
       }
-      //subt
-      while(calcArr.indexOf("-") != -1){
-        var subtIndex = calcArr.indexOf("-");
-        var subtracted = calcArr[subtIndex - 1] - calcArr[subtIndex + 1]
-        calcArr[subtIndex - 1] = subtracted;
-        calcArr.splice(subtIndex, 2);
-        subtIndex = calcArr.indexOf("-");
-      }
-
-
       
-      
-
 
       this.result = calcArr[0];
      
@@ -102,7 +98,7 @@ class SmartCalculator {
   }
 
   subtract(number) {
-    this.stackArr.push('-')
+    this.stackArr.push('minus')
     this.stackArr.push(number)
     this.calc();
 SmartCalculator.valueOf();
