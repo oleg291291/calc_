@@ -36,25 +36,27 @@ class SmartCalculator {
     //   this.result = initialValue; // тут ответ
     // this.stackArr = [initialValue];
 
-
-      var multStr = "*"
-      var multIndex = this.stackArr.indexOf(multStr);
-      while(multIndex != -1){
-        var multed = this.stackArr[multIndex - 1] * this.stackArr[multIndex + 1]
-        this.stackArr[multIndex - 1] = multed;
-        this.stackArr.splice(multIndex, 2);
-        multIndex = this.stackArr.indexOf(multStr);
+      var calcArr = this.stackArr.slice();
+      
+      
+      while(calcArr.indexOf("*") != -1){
+        var multIndex = calcArr.indexOf("*");
+        var multed = calcArr[multIndex - 1] * calcArr[multIndex + 1]
+        calcArr[multIndex - 1] = multed;
+        calcArr.splice(multIndex, 2);
+        multIndex = calcArr.indexOf("*");
       }
       //sum
-      var plusStr = '+'
-      var sumIndex = this.stackArr.indexOf(plusStr);
-      while(sumIndex != -1){
-        var summed = this.stackArr[sumIndex - 1] + this.stackArr[sumIndex + 1]
-        this.stackArr[sumIndex - 1] = summed;
-        this.stackArr.splice(sumIndex, 2);
-        sumIndex = this.stackArr.indexOf(plusStr);
+      
+      
+      while(calcArr.indexOf('+') != -1){
+        var sumIndex = calcArr.indexOf('+');
+        var summed = calcArr[sumIndex - 1] + calcArr[sumIndex + 1]
+        calcArr[sumIndex - 1] = summed;
+        calcArr.splice(sumIndex, 2);
+        sumIndex = calcArr.indexOf('+');
       }
-      this.result = this.stackArr[0];
+      this.result = calcArr[0];
      
     }
 
@@ -76,6 +78,7 @@ SmartCalculator.valueOf();
   multiply(number) {
     this.stackArr.push('*')
     this.stackArr.push(number)
+    this.calc();
     SmartCalculator.valueOf();
     return this;
   }
@@ -92,7 +95,7 @@ SmartCalculator.valueOf();
 
 }
 
-SmartCalculator.prototype.valueOf = function () { return this.stackArr[0]};
+SmartCalculator.prototype.valueOf = function () { return this.result};
 
 
 module.exports = SmartCalculator;
