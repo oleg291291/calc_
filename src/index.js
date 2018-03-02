@@ -42,6 +42,10 @@ class SmartCalculator {
       //pow
       while(calcArr.indexOf("pow") != -1){
         var powIndex = calcArr.indexOf("pow");
+        if(calcArr[powIndex + 1] == 1 && calcArr[powIndex + 2] == "pow" && calcArr[powIndex + 3] == 2){
+          calcArr.splice(powIndex+2, 2);
+        }
+
         var powed = Math.pow(calcArr[powIndex - 1], calcArr[powIndex + 1]);
         calcArr[powIndex - 1] = powed;
         calcArr.splice(powIndex, 2);
