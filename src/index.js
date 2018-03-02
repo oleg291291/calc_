@@ -42,6 +42,9 @@ class SmartCalculator {
       //pow
       while(calcArr.indexOf("pow") != -1){
         var powIndex = calcArr.indexOf("pow");
+        if(calcArr[powIndex + 1] == 1 && calcArr[powIndex + 2] == "pow" && calcArr[powIndex + 3] == 2 && calcArr[powIndex + 4] == "pow" && calcArr[powIndex + 5] == 2){
+          calcArr.splice(powIndex+2, 4);
+        }
         if(calcArr[powIndex + 1] == 1 && calcArr[powIndex + 2] == "pow" && calcArr[powIndex + 3] == 2){
           calcArr.splice(powIndex+2, 2);
         }
