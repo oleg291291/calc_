@@ -38,7 +38,7 @@ class SmartCalculator {
 
       var calcArr = this.stackArr.slice();
       
-      
+      //mult*
       while(calcArr.indexOf("*") != -1){
         var multIndex = calcArr.indexOf("*");
         var multed = calcArr[multIndex - 1] * calcArr[multIndex + 1]
@@ -46,9 +46,16 @@ class SmartCalculator {
         calcArr.splice(multIndex, 2);
         multIndex = calcArr.indexOf("*");
       }
-      //sum
-      
-      
+//devide/
+      while(calcArr.indexOf("/") != -1){
+        var devIndex = calcArr.indexOf("/");
+        var divided = calcArr[devIndex - 1] / calcArr[devIndex + 1]
+        calcArr[devIndex - 1] = divided;
+        calcArr.splice(devIndex, 2);
+        devIndex = calcArr.indexOf("/");
+      }
+
+      //sum+
       while(calcArr.indexOf('+') != -1){
         var sumIndex = calcArr.indexOf('+');
         var summed = calcArr[sumIndex - 1] + calcArr[sumIndex + 1]
@@ -56,6 +63,19 @@ class SmartCalculator {
         calcArr.splice(sumIndex, 2);
         sumIndex = calcArr.indexOf('+');
       }
+      //subt
+      while(calcArr.indexOf("-") != -1){
+        var subtIndex = calcArr.indexOf("-");
+        var subtracted = calcArr[subtIndex - 1] - calcArr[subtIndex + 1]
+        calcArr[subtIndex - 1] = subtracted;
+        calcArr.splice(subtIndex, 2);
+        subtIndex = calcArr.indexOf("-");
+      }
+
+      
+      
+
+
       this.result = calcArr[0];
      
     }
@@ -71,6 +91,9 @@ class SmartCalculator {
   }
 
   subtract(number) {
+    this.stackArr.push('-')
+    this.stackArr.push(number)
+    this.calc();
 SmartCalculator.valueOf();
     return this;
   }
@@ -84,6 +107,9 @@ SmartCalculator.valueOf();
   }
 
   devide(number) {
+    this.stackArr.push('/')
+    this.stackArr.push(number)
+    this.calc();
 SmartCalculator.valueOf();
     return this;
   }
