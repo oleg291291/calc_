@@ -38,6 +38,16 @@ class SmartCalculator {
 
       var calcArr = this.stackArr.slice();
       
+
+      //pow
+      while(calcArr.indexOf("pow") != -1){
+        var powIndex = calcArr.indexOf("pow");
+        var powed = Math.pow(calcArr[powIndex - 1], calcArr[powIndex + 1]);
+        calcArr[powIndex - 1] = powed;
+        calcArr.splice(powIndex, 2);
+        powIndex = calcArr.indexOf("pow");
+      }
+
       //mult*
       while(calcArr.indexOf("*") != -1){
         var multIndex = calcArr.indexOf("*");
@@ -71,6 +81,7 @@ class SmartCalculator {
         calcArr.splice(subtIndex, 2);
         subtIndex = calcArr.indexOf("-");
       }
+
 
       
       
@@ -115,6 +126,9 @@ SmartCalculator.valueOf();
   }
 
   pow(number) {
+    this.stackArr.push('pow')
+    this.stackArr.push(number)
+    this.calc();
 SmartCalculator.valueOf();
     return this;
   }
